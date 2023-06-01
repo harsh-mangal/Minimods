@@ -9,8 +9,8 @@ const data = {
       price: "33,299",
       countInStock: 10,
       brand: "asrock",
-      rating: 2.5,
-      numReviews: 100,
+      rating: 3.9,
+      numReviews: 89,
       description:
         "The Renowned X570 Taichi Now in a Special Razer Edition Avatar, Featuring 16 Phase Digital VRM, Chroma RGB Lighting Support, Killer 2.5 Gigabit Ethernet and WiFi 6 Connectivity, Also Nahimic Audio.",
     },
@@ -21,10 +21,10 @@ const data = {
         image:
           "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/ant%20value/a320mad4-n/a320mad4-n-image-main-600x600.webp",
         price: "3,870",
-        countInStock: 10,
+        countInStock: 0,
         brand: "Ant Esports",
         rating: 4,
-        numReviews: 150,
+        numReviews: 124,
         description:
           "The Ant Value A320MAD4-N is a high performance motherboard to keep up with all your gaming needs. This motherboard is designed specifically for gamers, with support for AM4 socket based AMD Ryzen and Athlon CPUs.",
       },
@@ -38,7 +38,7 @@ const data = {
         countInStock: 10,
         brand: "MSI",
         rating: 5,
-        numReviews: 50,
+        numReviews: 53,
         description:
           "MEG Z790 ACE Supports 12th/13th Gen Intel processor, Dual Channel DDR5 7800+MHz (OC), Dual Thunderbolt 4 ports, Maximum 5 x M.2 Connectors, Dual 2.5G LAN with latest Wi-Fi 6E solution, Audio Boost 5 HD",
       },
@@ -52,7 +52,7 @@ const data = {
         countInStock: 10,
         brand: "ASUS",
         rating: 3.5,
-        numReviews: 89,
+        numReviews: 48,
         description:
           "Well-versed in style, performance, cooling, and connectivity, the ROG Strix Z790-A exudes well-rounded balance inside and out. A robust VRM topped with stout silver heatsinks comfortably articulates power for the latest Intel® 13th Gen Core processors. PCIe 5.0, WiFi 6E, and high-speed USB flesh out the board's fluency across a variety of disciplines. And a vast collection of tuning options and utilities derived from its ROG heritage are the icing on top.",
       }
