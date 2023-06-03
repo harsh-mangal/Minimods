@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Rating from "../components/Rating";
@@ -44,7 +44,7 @@ const ProductScreen = () => {
     };
     fetchData();
   }, [slug]);
-
+  const Navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {cart} = state;
   const addToCartHandler = async() => {
@@ -59,6 +59,7 @@ const ProductScreen = () => {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity: 1 },
     });
+    Navigate('/cart');
   };
 
   return loading ? (

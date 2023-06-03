@@ -1,16 +1,30 @@
-
-.site-container{
+.site-container {
   min-height: 100vh !important;
 }
-main{
+
+main {
   flex: 1;
 }
-.rating span{
+
+.rating span {
   color: #ffc000;
-  
-}
-.img-large{
-  max-width: 100% ;
+
 }
 
+.img-large {
+  max-width: 100%;
+}
 
+.img-thumbnail {
+  height: 80px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}

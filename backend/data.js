@@ -2,7 +2,7 @@ const data = {
   products: [
     {
       _id : "1",
-      name: "ASROCK X570 MOTHERBOARD",
+      name: "ASROCK X570",
       slug : "asrock-x570-motherboard",
       category: "motherboard",
       image:
@@ -17,7 +17,7 @@ const data = {
     },
     {
       _id : "2",
-        name: "Ant Value A320MAD4-N Motherboard",
+        name: "Ant Value A320MAD4-N",
         slug : "ant-value-a320mad4-n",
         category: "motherboard",
         image:
@@ -32,7 +32,7 @@ const data = {
       },
       {
         _id : "3",
-        name: "MSI MEG Z790 ACE (Wi-Fi) Motherboard",
+        name: "MSI MEG Z790 ACE (Wi-Fi)",
         slug : "msi-meg-z790-ace",
         category: "motherboard",
         image:
@@ -47,7 +47,7 @@ const data = {
       },
       {
         _id : "4",
-        name: "Asus ROG Strix Z790-A Gaming Motherboard",
+        name: "Asus ROG Strix Z790-A",
         slug : "asus-rog-strix-z790",
         category: "motherboard",
         image:
