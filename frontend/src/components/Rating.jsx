@@ -59,7 +59,7 @@ const Rating = (props) => {
           }
         />
       </span>
-      <span>{numReviews} Reviews</span>
+      <span className="text-reviews">{numReviews} Reviews</span>
     </div>
   );
 };

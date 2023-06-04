@@ -7,7 +7,7 @@ const data = {
       category: "motherboard",
       image:
         "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/asrock/90-mxbey0-a0iayz/90-mxbey0-a0iayz-image-main-600x600.webp",
-      price: "33,299",
+      price: 33299,
       countInStock: 10,
       brand: "asrock",
       rating: 3.9,
@@ -22,7 +22,7 @@ const data = {
         category: "motherboard",
         image:
           "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/ant%20value/a320mad4-n/a320mad4-n-image-main-600x600.webp",
-        price: "3,870",
+        price: 3870,
         countInStock: 0,
         brand: "Ant Esports",
         rating: 4,
@@ -37,7 +37,7 @@ const data = {
         category: "motherboard",
         image:
           "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/msi/meg-z790-ace/meg-z790-ace-image-main-600x600.webp",
-        price: "68,299",
+        price: 68299,
         countInStock: 10,
         brand: "MSI",
         rating: 5,
@@ -52,7 +52,7 @@ const data = {
         category: "motherboard",
         image:
           "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/ASUS/rog-strix-z790-a-gaming-wifi/rog-strix-z790-a-gaming-wifi-image-main000000-600x600.webp",
-        price: "38,999",
+        price: 38999,
         countInStock: 10,
         brand: "ASUS",
         rating: 3.5,
