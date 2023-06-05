@@ -4,21 +4,32 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Rating from "./Rating";
 import { Store } from "../Store";
-import { formatPrice } from '../utils';
+import { formatPrice } from "../utils";
+import axios from "axios";
 
 const Product = (props) => {
-
   const { product } = props;
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  
-  const addToCartHandler = () => {
+  const {
+    cart: { cartItems },
+  } = state;
+
+  const addToCartHandler = async (item) => {
+    const existItem = cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert("Sorry , the product is out of stock");
+      return;
+    }
     ctxDispatch({
       type: "CART_ADD_ITEM",
-      payload: { ...product, quantity:1 },
+      payload: { ...product, quantity },
     });
+    // Navigate('/cart');
   };
   return (
-    <Card  className="product-container">
+    <Card className="product-container">
       <Link to={`/product/${product.slug}`}>
         <img className="card-img-top" src={product.image} alt={product.name} />
       </Link>
@@ -26,9 +37,18 @@ const Product = (props) => {
         <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
-        <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
+        <Rating
+          rating={product.rating}
+          numReviews={product.numReviews}
+        ></Rating>
         <Card.Text>{formatPrice(product.price)}</Card.Text>
-        <Button onClick={addToCartHandler}>Add to Cart</Button>
+        {product.countInStock === 0 ? (
+          <Button disabled variant="light">
+            Out of Stock
+          </Button>
+        ) : (
+          <Button onClick={addToCartHandler}>Add to Cart</Button>
+        )}
       </Card.Body>
     </Card>
   );
