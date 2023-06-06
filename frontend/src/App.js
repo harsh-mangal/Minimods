@@ -1,4 +1,6 @@
 import "./App.css";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -11,12 +13,20 @@ import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SignInScreen from "./screens/SignInScreen";
+import { NavDropdown } from "react-bootstrap";
 function App() {
-  const { state } = useContext(Store);
-  const { cart } = state;
+  const { state , dispatch : ctxDispatch} = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signoutHandler =() => {
+    ctxDispatch({type: 'USER_SIGNOUT'});
+    localStorage.removeItem('userInfo');
+  };
+
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
+        <ToastContainer position="bottom-center" limit={1}></ToastContainer>
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -28,10 +38,30 @@ function App() {
                   <i class="fa-solid fa-cart-shopping"></i>
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg="danger">
-                      {cart.cartItems.reduce((a,c)=> a+c.quantity, 0)}
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                     </Badge>
                   )}
                 </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>user Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/orderhistroy">
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="/signout"
+                      onClick={signoutHandler}
+                    >SignOut</Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className="nav-link" to="/signin">
+                    Sign in
+                  </Link>
+                )}
               </Nav>
             </Container>
           </Navbar>
