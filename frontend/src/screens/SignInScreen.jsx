@@ -1,13 +1,15 @@
 import Button from "react-bootstrap/Button";
 import { Helmet } from "react-helmet-async";
-import { Form, Link as RouterLink, useLocation } from "react-router-dom";
+import {  Link as RouterLink, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import {Form} from "react-bootstrap"
 export default function SignInScreen(){
     
     const {search} = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
     const redirect = redirectInUrl ? redirectInUrl : '/';
     return (
+        <>
         <Container className="small-container">
             <Helmet>
                 <title>Sign in</title>
@@ -35,5 +37,6 @@ export default function SignInScreen(){
                 </div>
             </Form>
         </Container>
+        </>
     )
 }

@@ -1,7 +1,22 @@
+import bcrypt from 'bcryptjs';
 const data = {
+  users:[
+    {
+      name : 'Harsh',
+      email : 'harsh@gmail.com',
+      password : bcrypt.hashSync('123456'),
+      isAdmin : true
+    },
+    {
+      name : 'abhishek',
+      email : 'abhishek@gmail.com',
+      password : bcrypt.hashSync('123456'),
+      isAdmin : false
+    }
+  ],
   products: [
     {
-      _id : "1",
+      // _id : "1",
       name: "ASROCK X570",
       slug : "asrock-x570-motherboard",
       category: "motherboard",
@@ -16,14 +31,14 @@ const data = {
         "The Renowned X570 Taichi Now in a Special Razer Edition Avatar, Featuring 16 Phase Digital VRM, Chroma RGB Lighting Support, Killer 2.5 Gigabit Ethernet and WiFi 6 Connectivity, Also Nahimic Audio.",
     },
     {
-      _id : "2",
+      // _id : "2",
         name: "Ant Value A320MAD4-N",
         slug : "ant-value-a320mad4-n",
         category: "motherboard",
         image:
           "https://cdn.mdcomputers.in/image/cachewebp/catalog/motherboard/ant%20value/a320mad4-n/a320mad4-n-image-main-600x600.webp",
         price: 3870,
-        countInStock: 0,
+        countInStock: 10,
         brand: "Ant Esports",
         rating: 4,
         numReviews: 124,
@@ -31,7 +46,7 @@ const data = {
           "The Ant Value A320MAD4-N is a high performance motherboard to keep up with all your gaming needs. This motherboard is designed specifically for gamers, with support for AM4 socket based AMD Ryzen and Athlon CPUs.",
       },
       {
-        _id : "3",
+        // _id : "3",
         name: "MSI MEG Z790 ACE (Wi-Fi)",
         slug : "msi-meg-z790-ace",
         category: "motherboard",
@@ -46,7 +61,7 @@ const data = {
           "MEG Z790 ACE Supports 12th/13th Gen Intel processor, Dual Channel DDR5 7800+MHz (OC), Dual Thunderbolt 4 ports, Maximum 5 x M.2 Connectors, Dual 2.5G LAN with latest Wi-Fi 6E solution, Audio Boost 5 HD",
       },
       {
-        _id : "4",
+        // _id : "4",
         name: "Asus ROG Strix Z790-A",
         slug : "asus-rog-strix-z790",
         category: "motherboard",
