@@ -7,7 +7,7 @@ main {
 }
 
 .rating span {
-  color: #F79327;
+  color: #F79327 !important;
 
 }
 
@@ -44,8 +44,8 @@ a{
 
 }
 .checkout-steps > div.active{
-  border-bottom:0.2rem solid #f08000;
-  color : #f08000;
+  border-bottom:0.2rem solid #ff5c00;
+  color : #ff5c00;
 }
 .ri-pencil-line{
   color: black;
@@ -57,7 +57,7 @@ a{
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
 }
 
 .pre-navbar-line {
@@ -93,4 +93,11 @@ a{
   .pre-navbar-right {
     display: none;
   }
+}
+Button{
+  background-color: #ff5c00 !important;
+  border-color: #ff5c00 !important;
+}
+.ci{
+  color: white !important;
 }

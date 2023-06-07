@@ -70,7 +70,7 @@ export default function CartScreen() {
                           updateCartHandler(item, item.quantity - 1)
                         }
                       >
-                        <i className="fas fa-minus-circle"></i>
+                        <i className="fas fa-minus-circle ci"></i>
                       </Button>{" "}
                       <span>{item.quantity}</span>{" "}
                       <Button
@@ -80,13 +80,13 @@ export default function CartScreen() {
                           updateCartHandler(item, item.quantity + 1)
                         }
                       >
-                        <i className="fas fa-plus-circle"></i>
+                        <i className="fas fa-plus-circle ci"></i>
                       </Button>
                     </Col>
                     <Col md={3}>{formatPrice(item.price)}</Col>
                     <Col md={2}>
                       <Button variant="light" onClick={()=> removeItemHandler(item)}>
-                        <i className="fas fa-trash"></i>
+                        <i className="fas fa-trash ci"></i>
                       </Button>
                     </Col>
                   </Row>

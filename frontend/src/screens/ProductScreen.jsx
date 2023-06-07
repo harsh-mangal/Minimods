@@ -13,6 +13,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { Store } from "../Store";
 import { formatPrice } from "../utils";
+import { toast } from "react-toastify";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -47,13 +48,15 @@ const ProductScreen = () => {
   }, [slug]);
   const Navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
+  const [showToast, setShowToast] = useState(false);
   const {cart} = state;
   const addToCartHandler = async() => {
     const existItem = cart.cartItems.find((x)=> x._id === product._id);
     const quantity = existItem ? existItem.quantity +1 :1;
     const {data} = await axios.get(`/api/products/${product._id}`);
     if(data.countInStock < quantity){
-      window.alert('Sorry , the product is out of stock');
+      setShowToast(true);
+      toast.error("Product is Out of Stock");
       return;
     }
     ctxDispatch({
