@@ -101,3 +101,8 @@ Button{
 .ci{
   color: white !important;
 }
+.alert-info{
+  background-color: #ff5e002a;
+  color: black;
+  /* font-weight: bold; */
+}
