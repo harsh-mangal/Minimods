@@ -9,6 +9,8 @@ import Product from "../components/Product";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import CarouselComponent from "../components/CarouselComponent";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -48,7 +50,8 @@ const HomeScreen = () => {
       <Helmet>
         <title>Minimods</title>
       </Helmet>
-      <h1>Featured Products</h1>
+     <CarouselComponent/>
+      <h1 className="mt-3">MotherBoards</h1>
       <div className="products">
         {loading ? (
          <LoadingBox/>
@@ -64,7 +67,9 @@ const HomeScreen = () => {
           </Row>
         )}
       </div>
+
     </main>
+    
   );
 };
 

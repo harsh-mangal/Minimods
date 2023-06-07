@@ -1,7 +1,7 @@
 import "./App.css";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, useNavigate } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import Navbar from "react-bootstrap/Navbar";
@@ -14,13 +14,20 @@ import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SignInScreen from "./screens/SignInScreen";
 import { NavDropdown } from "react-bootstrap";
+import ShippingScreen from "./screens/ShippingScreen";
+import SignupScreen from "./screens/SignupScreen";
+import PaymentmethodScreen from "./screens/PaymentmethodScreen";
+import PlaceorderScreen from "./screens/PlaceorderScreen";
+import PreNavbar from "./components/PreNavbar";
 function App() {
   const { state , dispatch : ctxDispatch} = useContext(Store);
   const { cart, userInfo } = state;
-
   const signoutHandler =() => {
     ctxDispatch({type: 'USER_SIGNOUT'});
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingScreen');
+    localStorage.removeItem('paymentMethod');
+    window.location.reload();
   };
 
   return (
@@ -28,6 +35,7 @@ function App() {
       <div className="d-flex flex-column site-container">
         <ToastContainer position="bottom-center" limit={1}></ToastContainer>
         <header>
+          <PreNavbar/>
           <Navbar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
@@ -53,7 +61,7 @@ function App() {
                     <NavDropdown.Divider />
                     <Link
                       className="dropdown-item"
-                      to="/signout"
+                      to="/signin"
                       onClick={signoutHandler}
                     >SignOut</Link>
                   </NavDropdown>
@@ -72,7 +80,11 @@ function App() {
               <Route path="/" element={<HomeScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/signin" element={<SignInScreen />} />
+              <Route path="/signup" element={<SignupScreen />} />
+              <Route path="/payment" element={<PaymentmethodScreen />} />
               <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/shipping" element={<ShippingScreen />} />
+              <Route path="/placeorder" element={<PlaceorderScreen />} />
             </Routes>
           </Container>
         </main>

@@ -38,3 +38,59 @@ a{
   margin-top: 50px;
   max-width: 50vw !important;
 }
+.checkout-steps>div{
+  border-bottom : 0.2rem solid #a0a0a0;
+  color : #a0a0a0;
+
+}
+.checkout-steps > div.active{
+  border-bottom:0.2rem solid #f08000;
+  color : #f08000;
+}
+.ri-pencil-line{
+  color: black;
+}
+.pre-navbar {
+  margin-left: 105px;
+  margin-right: 105px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+.pre-navbar-line {
+  width: 3px;
+  height: 20px;
+  background-color: #000;
+  margin-right: 10px;
+}
+
+.pre-navbar-left,
+.pre-navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.pre-navbar-right {
+  margin-left: auto;
+}
+
+.pre-navbar-right a {
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .pre-navbar{
+    margin-left: 0px;
+  margin-right: 0px;
+  }
+  .pre-navbar-line {
+    display: none;
+  }
+
+  .pre-navbar-right {
+    display: none;
+  }
+}
