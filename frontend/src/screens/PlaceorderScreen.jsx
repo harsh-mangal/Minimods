@@ -1,27 +1,89 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Helmet } from "react-helmet-async";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Store } from "../Store";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import  Axios  from "axios";
+import LoadingBox from "../components/LoadingBox";
+// import { Toast } from "react-toastify/dist/components";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CREATE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "CREATE_SUCESS":
+      return {
+        ...state,
+        loading: false,
+      };
+    case "CREATE_FAIL":
+      return {
+        ...state,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
 
 const PlaceorderScreen = () => {
+  const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
+    loading: false,
+    error: "",
+  });
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-  const round2 = (num) => Math.round(num*100 + Number.EPSILON)/100;
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   cart.itemsPrice = round2(
-    cart.cartItems.reduce((a,c)=>a+c.quantity*c.price,0)
+    cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.18 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice+cart.taxPrice+cart.shippingPrice;
-  const placeOrderHandler = async()=>{};
-  useEffect(()=>{
-    if(!cart.paymentMethod){
-        navigate('/payment');
+  cart.totalPrice = cart.itemsPrice + cart.taxPrice + cart.shippingPrice;
+  const placeOrderHandler = async () => {
+    try {
+        dispatch({type:'CREATE_REQUEST'});
+        const {data} = await Axios.post(
+            '/api/orders',
+            {
+                orderItems : cart.cartItems,
+                shippingAddress : cart.shippingAddress,
+                paymentMethod : cart.paymentMethod,
+                itemsPrice : cart.itemsPrice,
+                shippingPrice : cart.shippingPrice,
+                taxPrice : cart.taxPrice,
+                totalPrice : cart.totalPrice,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+              },
+              
+            }
+        );
+        ctxDispatch({type: 'CART_CLEAR'});
+        dispatch({type: 'CREATE_SUCESS'});
+        localStorage.removeItem('cartItems');
+        navigate(`/`);
+        toast.success('Order created successfully');
+    } catch (error) {
+        dispatch({type : 'CREATE_FAIL'});
+        setShowToast(true);
+        toast.error(error.message);
     }
-  },[cart , navigate]);
+  };
+  useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate("/payment");
+    }
+  }, [cart, navigate]);
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -116,7 +178,9 @@ const PlaceorderScreen = () => {
                     <Col>
                       <strong>Order Total</strong>
                     </Col>
-                    <Col><strong>₹{(cart?.totalPrice || 0).toFixed(2)}</strong></Col>
+                    <Col>
+                      <strong>₹{(cart?.totalPrice || 0).toFixed(2)}</strong>
+                    </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -128,6 +192,7 @@ const PlaceorderScreen = () => {
                     >
                       Place Order
                     </Button>
+                    {loading && <LoadingBox/>}
                   </div>
                 </ListGroup.Item>
               </ListGroup>
