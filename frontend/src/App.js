@@ -20,6 +20,7 @@ import PaymentmethodScreen from "./screens/PaymentmethodScreen";
 import PlaceorderScreen from "./screens/PlaceorderScreen";
 import PreNavbar from "./components/PreNavbar";
 import OrderhistoryScreen from "./screens/OrderhistoryScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 function App() {
   const { state , dispatch : ctxDispatch} = useContext(Store);
   const { cart, userInfo } = state;
@@ -42,7 +43,7 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand>Minimods</Navbar.Brand>
               </LinkContainer>
-              <Nav className="me-auto">
+              <Nav className="me-auto  w-100  justify-content-end">
                 <Link to="/cart" className="nav-link">
                   <i class="fa-solid fa-cart-shopping"></i>
                   {cart.cartItems.length > 0 && (
@@ -87,6 +88,7 @@ function App() {
               <Route path="/shipping" element={<ShippingScreen />} />
               <Route path="/placeorder" element={<PlaceorderScreen />} />
               <Route path="/orderhistory" element={<OrderhistoryScreen />} />
+              <Route path="/profile" element={<ProfileScreen />} />
             </Routes>
           </Container>
         </main>

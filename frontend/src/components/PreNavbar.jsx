@@ -14,7 +14,7 @@ const PreNavbar = () => {
           </span>
         </div>
         <div className="pre-navbar-right">
-          <NavLink to="/myprofile">My Profile</NavLink>
+          <NavLink to="/profile">My Profile</NavLink>
         </div>
       </div>
     );
